@@ -36,7 +36,9 @@ class PixelateLoader implements LoaderInterface
 
         $type = $options['type'] ?? 'ellipse';
 
-        return $this->pixelate($image, $x + $width, $y + $height, $x, $y, $intensity, $type);
+        $this->pixelate($image, $x + $width, $y + $height, $x, $y, $intensity, $type);
+
+        return $image;
     }
 
     public function pixelate(
