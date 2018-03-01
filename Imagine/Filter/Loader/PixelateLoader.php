@@ -32,7 +32,7 @@ class PixelateLoader implements LoaderInterface
         $width  = $options['size'][0] ?? 0;
         $height = $options['size'][1] ?? 0;
 
-        $intensity = $options['intensity'] ?? 10;
+        $intensity = $options['intensity'] ?? 20;
 
         $type = $options['type'] ?? 'ellipse';
 
