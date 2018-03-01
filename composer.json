@@ -1,0 +1,16 @@
+{
+    "name": "neok/liip-imagine-additional-filters-bundle",
+    "description": "Pixelate and blur filters for liip imagine bundle",
+    "type": "symfony-bundle",
+    "require": {
+        "liip/imagine-bundle": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Petr Popelyshko",
+            "email": "p.popelyshko@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
