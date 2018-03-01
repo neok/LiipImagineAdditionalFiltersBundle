@@ -1,0 +1,5 @@
+services:
+    liip_imagine_additional_filters_pixelate:
+        class:  Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader\PixelateLoader
+        tags:
+            - { name: liip_imagine.filter.loader, loader: pixelate_filter }
