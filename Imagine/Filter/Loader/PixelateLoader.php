@@ -34,7 +34,7 @@ class PixelateLoader implements LoaderInterface
 
         $intensity = $options['intensity'] ?? 20;
 
-        $type = $options['type'] ?? 'ellipse';
+        $type = $options['type'] ?? 'rectangle';
 
         $this->pixelate($image, $x + $width, $y + $height, $x, $y, $intensity, $type);
 
@@ -56,17 +56,10 @@ class PixelateLoader implements LoaderInterface
         // start from the top-left pixel and keep looping until we have the desired effect
         for ($y = $startY; $y < $height; $y += $intensity + 1) {
             for ($x = $startX; $x < $width; $x += $intensity + 1) {
-                $rgb = imagecolorsforindex($img, imagecolorat($img, $x, $y));
+                $rgb   = imagecolorsforindex($img, imagecolorat($img, $x, $y));
                 $color = imagecolorclosest($img, $rgb['red'], $rgb['green'], $rgb['blue']);
-                if ('ellipse' === $type) {
-                    $tempX = $x - $width / 2;
-                    $tempY = $y - $height / 2;
-                    if ((($tempX * $tempX) + ($tempY * $tempY)) < ($r * $r)) {
-                        imagefilledrectangle($img, $x, $y, $x + $intensity, $y + $intensity, $color);
-                    }
-                } else {
-                    imagefilledrectangle($img, $x, $y, $x + $intensity, $y + $intensity, $color);
-                }
+
+                imagefilledrectangle($img, $x, $y, $x + $intensity, $y + $intensity, $color);
             }
         }
 
