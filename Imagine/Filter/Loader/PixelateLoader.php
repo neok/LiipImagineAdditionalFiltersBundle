@@ -47,12 +47,10 @@ class PixelateLoader implements LoaderInterface
         $height,
         $startX,
         $startY,
-        $intensity = 10,
-        $type = 'ellipse'
+        $intensity = 10
     ) {
         $img = $image->getGdResource();
 
-        $r = $width / 2;
         // start from the top-left pixel and keep looping until we have the desired effect
         for ($y = $startY; $y < $height; $y += $intensity + 1) {
             for ($x = $startX; $x < $width; $x += $intensity + 1) {
