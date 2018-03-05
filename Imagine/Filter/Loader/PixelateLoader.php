@@ -2,28 +2,15 @@
 
 namespace Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader;
 
+use Imagine\Gd\Image;
 use Imagine\Image\ImageInterface;
 use Liip\ImagineBundle\Imagine\Filter\Loader\LoaderInterface;
 
+/**
+ * Class PixelateLoader
+ */
 class PixelateLoader implements LoaderInterface
 {
-    /**
-     * Driver - one of the three drivers: gd, imagick, gmagick.
-     *
-     * @var string
-     */
-    private $driver;
-
-    /**
-     * PixelateLoader constructor.
-     *
-     * @param string $driver
-     */
-    public function __construct($driver)
-    {
-        $this->driver = (string)$driver;
-    }
-
     public function load(ImageInterface $image, array $options = [])
     {
         $x = $options['start'][0] ?? 0;
@@ -35,23 +22,33 @@ class PixelateLoader implements LoaderInterface
         $intensity = $options['intensity'] ?? 20;
 
         $type = $options['type'] ?? 'rectangle';
+        $img  = null;
+        if ($image instanceof Image) {
+            $img = $image->getGdResource();
+        }
 
-        $this->pixelate($image, $x + $width, $y + $height, $x, $y, $intensity, $type);
+        if ($image instanceof \Imagine\Imagick\Image) {
+            $img = $image->getImagick();
+        }
+
+        if ($image instanceof \Imagine\Gmagick\Image) {
+            $img = $image->getGmagick();
+        }
+        if ($img) {
+            $this->pixelate($img, $x + $width, $y + $height, $x, $y, $intensity, $type);
+        }
 
         return $image;
     }
 
     public function pixelate(
-        ImageInterface $image,
+        $img,
         $width,
         $height,
         $startX,
         $startY,
         $intensity = 10
     ) {
-        $img = $image->getGdResource();
-
-        // start from the top-left pixel and keep looping until we have the desired effect
         for ($y = $startY; $y < $height; $y += $intensity + 1) {
             for ($x = $startX; $x < $width; $x += $intensity + 1) {
                 $rgb   = imagecolorsforindex($img, imagecolorat($img, $x, $y));
