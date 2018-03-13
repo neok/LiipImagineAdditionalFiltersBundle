@@ -2,8 +2,6 @@
 
 namespace Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader;
 
-use Imagine\Image\ImageInterface;
-
 /**
  * Class BlurLoader.
  */

@@ -45,13 +45,14 @@ class PixelateLoader extends AbstractLoader
             imagealphablending($img_, false);
             imagecopyresampled($img_, $img, 0, 0, $startX, $startY, $width, $height, $width, $height);
 
-            $r = ($width / 2) - 10;
-            for ($y = 0; $y < $width; $y += $this->intensity + 1) {
-                for ($x = 0; $x < $height; $x += $this->intensity + 1) {
-                    $_x = $x - $width / 2;
-                    $_y = $y - $height / 2;
+            $r  = ($width / 2);
+            $r2 = ($height / 2);
+            for ($y = 0; $y < $height; $y += $this->intensity + 1) {
+                for ($x = 0; $x < $width; $x += $this->intensity + 1) {
+                    $_x = $x - ($width) / 2;
+                    $_y = $y - ($height) / 2;
 
-                    if ((($_x * $_x) + ($_y * $_y)) < ($r * $r)) {
+                    if ((($_x * $_x) + ($_y * $_y)) < ($r * $r2)) {
                         $this->fillRectangle($img_, $x, $y);
                     }
                 }
