@@ -5,6 +5,6 @@ services:
             - { name: liip_imagine.filter.loader, loader: pixelate_filter }
 
     liip_imagine_additional_filters_blur:
-        class:  Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader\BluLoader
+        class:  Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader\BlurLoader
         tags:
             - { name: liip_imagine.filter.loader, loader: blur_filter }
