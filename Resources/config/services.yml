@@ -1,6 +1,10 @@
 services:
     liip_imagine_additional_filters_pixelate:
         class:  Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader\PixelateLoader
-        arguments: ['gd']
         tags:
             - { name: liip_imagine.filter.loader, loader: pixelate_filter }
+
+    liip_imagine_additional_filters_blur:
+        class:  Neok\LiipImagineAdditionalFiltersBundle\Imagine\Filter\Loader\BluLoader
+        tags:
+            - { name: liip_imagine.filter.loader, loader: blur_filter }
