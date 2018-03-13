@@ -5,7 +5,7 @@
 
 #### Basic usage
 
-```
+```yml
 liip_imagine:
     filter_sets:
         pixelate:
